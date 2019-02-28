@@ -59,19 +59,23 @@ Once TypeStat has visited each file, it will either:
 
 For each file it visits, [`findMutationsInFile`](../src/runtime/findMutationsInFile.ts)
 will attempt to apply the following [built-in file mutators](../src/runtime/builtInFileMutators.ts)
-in order _(generally ordered by which is likely to complete the fastest)_:
+in order _(vaguely ordered by which might be likely to complete the fastest)_:
 
-1. Binary expressions
-2. Call expressions
-3. Variable declarations
-4. Function-like returns
-5. Property declarations
-6. Parameters
-7. Property accessors
-8. Function `this`s
+1. [Binary expressions](../src/mutators/builtIn/binaryExpressionMutator.ts): adds non-null assertions to non-null locations being assigned nullish values.
+2. [Call expressions](../src/mutators/builtIn/callExpressionMutator.ts): adds non-null assertions to call expressions passing nullish values to non-null functions.
+3. [Variable declarations](../src/mutators/builtIn/variableDeclarationMutator.ts): fixes `--noImplicitAny` on variable declarations, or adds missing types to them
+4. [Function-like returns](../src/mutators/builtIn/returnTypeMutator.ts): adds missing types to return declarations, or adds non-null assertions to `return`s within the function
+5. [Property declarations](../src/mutators/builtIn/propertyDeclarationMutator.ts): fixes `--noImplicitAny` on properties, or adds missing types to them
+6. [Parameters](../src/mutators/builtIn/parameterMutator.ts): fixes `--noImplicitAny` on parameters, or adds missing types to them
+7. [Property accessors](../src/mutators/builtIn/propertyAccessExpressionMutator.ts): creates missing (undeclared) properties,
+or adds missing non-null assertions to property accesses on nullish objects
+8. [Function-likes](../src/mutators/builtIn/functionLikeDeclarationMutator.ts): removes extraneous properties from function parameters
+9. [Function `this`s](../src/mutators/builtIn/functionThisMutator.ts): fixes `--noImplicitThis` _(not yet implemented, pending TypeScript adding it)_
 
 Within each round of applying mutations, TypeStat will stop looking at a file after each step if any mutations are found.
 Adding mutations from one from can improve mutations from other forms, so reloading the file between rounds could reduce the number of later rounds.
+
+> The ordering is a little arbitrary and very much untested.
 
 ## Directory Structure
 

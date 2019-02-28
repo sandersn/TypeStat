@@ -13,7 +13,8 @@ export const returnTypeMutator: FileMutator = (request: FileMutationsRequest): R
 
 const isNodeVisitableFunctionLikeDeclaration = (node: ts.Node): node is FunctionLikeDeclarationWithType =>
     tsutils.isFunctionWithBody(node) &&
-    // If the node has an implicit return type, we don't need to change anything
+    // If the node has an explicit return type, we don't need to change anything
+    // This will change from https://github.com/JoshuaKGoldberg/TypeStat/issues/37
     isNodeWithType(node);
 
 const visitFunctionWithBody = (node: FunctionLikeDeclarationWithType, request: FileMutationsRequest): IMutation | undefined => {

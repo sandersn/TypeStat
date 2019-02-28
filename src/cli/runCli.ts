@@ -41,6 +41,7 @@ export const runCli = async (rawArgv: ReadonlyArray<string>, runtime = createDef
             "--fixStrictNonNullAssertions",
             "add missing non-null assertions in nullable property accesses, function-like calls, and return types",
         )
+        .option("--fixUnnecessaryTypes", "remove unnecessary types from type declarations")
         .option("--packageDirectory [packageDirectory]", "working directory (cwd) of the project")
         .option("--packageFile [packageFile]", "package.json path to consider the project's package")
         .option("--packageMissingTypes [packageMissingTypes]", "package manager to install missing types, or unspecified to auto-detect")

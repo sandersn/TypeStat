@@ -1,5 +1,6 @@
 import { binaryExpressionMutator } from "./builtIn/binaryExpressionMutator";
 import { callExpressionMutator } from "./builtIn/callExpressionMutator";
+import { functionLikeMutator } from "./builtIn/functionLikeMutator";
 import { functionThisMutator } from "./builtIn/functionThisMutator";
 import { parameterMutator } from "./builtIn/parameterMutator";
 import { propertyAccessExpressionMutator } from "./builtIn/propertyAccessExpressionMutator";
@@ -17,4 +18,5 @@ export const builtInFileMutators: ReadonlyArray<[string, FileMutator]> = [
     ["parameterMutator", parameterMutator],
     ["propertyAccessExpressionMutator", propertyAccessExpressionMutator],
     ["functionThisMutator", functionThisMutator],
+    ["functionLikeMutator", functionLikeMutator],
 ];

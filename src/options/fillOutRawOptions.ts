@@ -60,6 +60,7 @@ export const fillOutRawOptions = ({
             noImplicitAny: false,
             noImplicitThis: false,
             strictNonNullAssertions: false,
+            unnecessaryTypes: false,
             ...rawOptions.fixes,
         },
         logger: argv.logger,
@@ -92,6 +93,10 @@ export const fillOutRawOptions = ({
 
     if (argv.fixStrictNonNullAssertions !== undefined) {
         options.fixes.strictNonNullAssertions = argv.fixStrictNonNullAssertions;
+    }
+
+    if (argv.fixUnnecessaryTypes !== undefined) {
+        options.fixes.unnecessaryTypes = argv.fixUnnecessaryTypes;
     }
 
     return options;

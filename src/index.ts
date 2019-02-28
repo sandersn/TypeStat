@@ -26,6 +26,7 @@ export interface TypeStatArgv {
     readonly fixNoImplicitAny?: boolean;
     readonly fixNoImplicitThis?: boolean;
     readonly fixStrictNonNullAssertions?: boolean;
+    readonly fixUnnecessaryTypes?: boolean;
     readonly mutator?: string | ReadonlyArray<string>;
 
     /**

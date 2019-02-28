@@ -187,6 +187,11 @@ export interface Fixes {
      * Whether to add missing non-null assertions in nullable property accesses, function-like calls, and return types.
      */
     strictNonNullAssertions: boolean;
+
+    /**
+     * Whether to remove unnecessary types from type declarations.
+     */
+    unnecessaryTypes: boolean;
 }
 
 /**
